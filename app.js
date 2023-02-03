@@ -15,21 +15,22 @@ app.get("/", (req,res)=>{
 })
 
 app.get("/log", (req, res) => {
-    res.send(workouts);
+    res.send(workout.workouts);
 });
 
 app.post("/add", (req, res) => {
     let newWorkout = req.body;
-    workout.workouts.id = newWorkout.id;
-    workout.workouts.name = newWorkout.name;
-    workout.workouts.Reps = newWorkout.Reps;
-    workout.workouts.Weight = newWorkout.Weight;
+    newWorkout.id = newWorkout.id;
+    newWorkout.name = newWorkout.name;
+    newWorkout.Reps = newWorkout.Reps;
+    newWorkout.Weight = newWorkout.Weight;
     newWorkout.date = new Date();
     workout.workouts.push(newWorkout);
-    res.send(newWorkout + " was added");
+    res.send(`Workout ${newWorkout.name} was added`);
 });
 
-app.delete("/delete", (req, res) => {
+
+app.delete("/delete/:id", (req, res) => {
     const workoutId = req.params.id;
     const workoutIndex = workout.workouts.findIndex(workout => workout.id === workoutId);
 
@@ -38,9 +39,9 @@ app.delete("/delete", (req, res) => {
     }
 
     workout.workouts.splice(workoutIndex, 1);
-    res.sendFile(__dirname + "/delete.html");
     res.send(`Successfully deleted workout with id: ${workoutId}`);
 });
+
 
 
 
