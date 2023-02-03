@@ -24,7 +24,7 @@ app.post("/add", (req, res) => {
     newWorkout.name = newWorkout.name;
     newWorkout.Reps = newWorkout.Reps;
     newWorkout.Weight = newWorkout.Weight;
-    newWorkout.date = new Date();
+    newWorkout.date = new Date().toLocaleDateString();
     workout.workouts.push(newWorkout);
     res.send(`Workout ${newWorkout.name} was added`);
 });
