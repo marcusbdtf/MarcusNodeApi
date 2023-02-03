@@ -29,7 +29,6 @@ app.post("/add", (req, res) => {
     res.send(`Workout ${newWorkout.name} was added`);
 });
 
-
 app.delete("/delete/:id", (req, res) => {
     const workoutId = req.params.id;
     const workoutIndex = workout.workouts.findIndex(workout => workout.id === workoutId);
@@ -41,12 +40,6 @@ app.delete("/delete/:id", (req, res) => {
     workout.workouts.splice(workoutIndex, 1);
     res.send(`Successfully deleted workout with id: ${workoutId}`);
 });
-
-
-
-
-
-
 
 app.listen(PORT, ()=>{
     console.log("listening to port "+ PORT)
